@@ -1,0 +1,83 @@
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Lab</title>
+    <link rel="stylesheet" href="{%static 'css/edit_labs.css'%}">
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body >
+    <div class="home">
+        <div class="navbar">
+            <ul class="nav_links">
+                <li><a href="{%url 'LabH'%}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{%url 'EditLabs'%}"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
+                <li><a href="{%url 'Report'%}"><i class="fa-solid fa-screwdriver-wrench"></i>Report a problem</a></li>
+                <li><a href="{%url 'AddLab'%}"><i class="fa-solid fa-circle-plus"></i>Add Lab</a></li>
+                <li><a href="{%url 'ListLab'%}"><i class="fa-solid fa-laptop"></i>Show Lab</a></li>
+                    <li><a href="{%url 'AddPC'%}"><i class="fa-solid fa-circle-plus"></i>Add PC</a></li>
+                    <li><a href="{%url 'PcsList'%}"><i class="fa-solid fa-list"></i>Show PC</a></li>
+            </ul>
+            </div>
+    </div>
+    <div class="wrapper">
+<h1>Adding the new information which you want to change</h1>    
+<form action="Elab/{{ UpdateObj.Laboratory_ID }}" method="post">
+    {% csrf_token %}
+    <b>Laboratory ID:</b>
+    <br>
+    <input id="id" type="text" name="id" value={{UpdateObj.Laboratory_ID}}>
+    <br><br>
+    <b style="font-size: 15px;">Laboratory Name:</b>
+    <br>
+    <input id="name" type="text" name="name" value={{UpdateObj.Laboratory_Name}}>
+    <br><br>
+    <b style="font-size: 15px;">Building Number:</b>
+    <br>
+    <input id="Bnumber" type="text" name="number" value={{UpdateObj.Laboratory_Number}}>
+    <br><br>
+    <b style="font-size: 15px;">Floor Number:</b>
+    <br>
+    <input id="Fnumber" type="text" name="floor_no" value={{UpdateObj.Floor_Number}}>
+    <br><br>
+    <b style="font-size: 15px;">Number of PCs in laboratory:</b>
+    <br>
+    <input id="PCnumber" type="text" name="PCs_no" value={{UpdateObj.NumOfPcs}}>
+    <br><br>
+    <b style="font-size: 15px;">Laboratory capacity:</b>
+    <br>
+    <input id="PCcapacity" type="text" name="capacity" value={{UpdateObj.LabCapacity}}>
+    <br><br>
+    <b style="font-size: 15px;">Number of chairs in laboratory:</b>
+    <br>
+    <input id="CHnumbers" type="text" name="chair_no" value={{UpdateObj.NumOfChairs}}>
+    <br><br>
+    <b style="font-size: 15px;">Status of laboratory:
+    </b><br>
+    <input type="radio" name="Status" value="Active">
+    active
+    <br>
+    <input type="radio" name="Status" value="Under Maintenance">
+    under maintenance
+    <br>
+    <br>
+    <button  onclick="confirm('Are you sure ?');">Complete</button>
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+</form>
+</div>
+</body>
+</html>
+{%endblock content%}

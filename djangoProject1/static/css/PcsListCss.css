@@ -1,0 +1,80 @@
+body {
+    background:#282931;
+    font-family: 'Trebuchet MS';
+}
+#listb
+{
+    text-align: center;
+    font-size: 30px;
+}
+table
+{
+    border: 0.5px solid rgb(139, 135, 135);
+    width: 80%;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#Editbtn
+{
+    position: relative;
+    left:-17%;
+    float:right;
+}
+#Savebtn
+{
+    position: relative;
+    left:-22%;
+    display: none;
+    float:right;
+}
+.stchng
+{
+    position: relative;
+    left:18%;
+    padding:3px;
+    font-family: Trebuchet MS;
+    text-align: center;
+    font-size: 14px;
+}
+th
+{
+    text-align: center;
+    padding: 8px;
+    background-color: crimson;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+td
+{
+    padding: 8px;
+    background-color: white;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+td#input{text-align: center;}
+tr:nth-child(even)
+{
+    background-color: rgb(240, 238, 238);
+}
+button {
+    background-color: crimson;
+    border-radius: 24px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    margin-left: 10px;
+    font-size: 8px;
+    font-weight: 500;
+    font-family: inherit;
+    letter-spacing: .25px;
+    line-height: normal;
+    padding: 11px 24px;
+    transition: 280ms ease;
+    }
+    button:hover {
+    background: #9d2929;
+    }

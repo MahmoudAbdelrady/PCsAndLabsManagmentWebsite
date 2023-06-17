@@ -1,0 +1,69 @@
+{%load static%}
+{%block content%}
+<html>
+    <head>
+        <title>List PCs</title>
+        <link rel="stylesheet" href="{% static 'css/PCsListCss.css' %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+    <body>
+        <div class="home">
+            <div class="navbar">
+                <ul class="nav_links">
+                    <li><a href="{%url 'LabH'%}"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a href="{%url 'EditLabs'%}"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
+                    <li><a href="{%url 'Report'%}"><i class="fa-solid fa-screwdriver-wrench"></i>Report a problem</a></li>
+                    <li><a href="{%url 'AddLab'%}"><i class="fa-solid fa-circle-plus"></i>Add Lab</a></li>
+                    <li><a href="{%url 'ListLab'%}"><i class="fa-solid fa-laptop"></i>Show Lab</a></li>
+                        <li><a href="{%url 'AddPC'%}"><i class="fa-solid fa-circle-plus"></i>Add PC</a></li>
+                        <li><a href="{%url 'PcsList'%}"><i class="fa-solid fa-list"></i>Show PC</a></li>
+                </ul>
+                </div>
+        </div>
+        <br>
+        <div id="listb">
+            <form style="color: crimson;">Pcs that need a repair</form>
+            <table>
+                <tr>
+                    <th>Laboratory ID</th>
+                    <th>Pc Number</th>
+                    <th>Problem Type</th>
+                    <th>Problem Details</th>
+                    <th>Date of occurrence</th>
+                    <th>Status
+                        <input type="image" src="{%static 'img/Editbtn.png'%}" width="19px" height="21px" id="Editbtn" onclick="change()">
+                        <input type="image" src="{%static 'img/Savebtn.png'%}" width="21px" height="24px" id="Savebtn" onclick="save()">
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                {%for y in ReportInfo%}
+                <tr>
+                    <td>{{y.RLaboratory_ID}}</td>
+                    <td>{{y.RPcNum}}</td>
+                    <td>{{y.RProblemType}}</td>
+                    <td>{{y.RDescription}}</td>
+                    <td>{{y.RDate}}</td>
+                    <td id="input">
+                        <label class="mainst">Not Repaired</label>
+                        <select class="stchng" style="display: none;">
+                        <option value="Not Repaired" class="st1">Not Repaired</option>
+                        <option value="Repaired" class="st2">Repaired</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a href="{%url 'EditPcs'%}"><button > Edit
+                        </button></a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <script type="text/javascript" src="{%static 'js/PcsListJs.js'%}"></script>
+    </body>
+</html>
+{%endblock content%}

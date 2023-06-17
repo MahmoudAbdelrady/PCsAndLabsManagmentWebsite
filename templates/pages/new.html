@@ -1,0 +1,55 @@
+{%load static%}
+{%block content%}
+<html>
+    <head>
+        <title>Add Lab</title>
+        <link rel="stylesheet" href="{%static 'css/new.css'%}">
+        <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+    <body>
+        <div class="home">
+            <div class="navbar">
+                <ul class="nav_links">
+                    <li><a href="{%url 'LabH'%}"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a href="{%url 'EditLabs'%}"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
+                    <li><a href="{%url 'Report'%}"><i class="fa-solid fa-screwdriver-wrench"></i>Report a problem</a></li>
+                    <li><a href="{%url 'AddLab'%}"><i class="fa-solid fa-circle-plus"></i>Add Lab</a></li>
+                    <li><a href="{%url 'ListLab'%}"><i class="fa-solid fa-laptop"></i>Show Lab</a></li>
+                        <li><a href="{%url 'AddPC'%}"><i class="fa-solid fa-circle-plus"></i>Add PC</a></li>
+                        <li><a href="{%url 'PcsList'%}"><i class="fa-solid fa-list"></i>Show PC</a></li>
+                </ul>
+                </div>
+        </div>
+        <br>
+        <br>
+        <h1 align="center" class="header"> adding new laboratory </h1>
+
+        <form class="paragraph" onsubmit="checkForm();" method="post">
+            {% csrf_token %}
+            <b>laboratory ID:</b><br>
+            <input type="text" id="lab_id" name="NewLabID"><br>
+            <b >laboratory Name:</b><br>
+            <input type="text" id="lab_name" name="NewLabName"><br>
+            <b >laboratory Number:</b><br>
+            <input type="number" id="lab_num" name="NewLabNum"><br>
+            <b >floor Number:</b><br>
+            <input type="number" id="floor_num" name="NewLabFloorNum"><br>
+            <b >number of PCs in laboratory:</b><br>
+            <input type="number" id="pc_num" name="NewLabNumofPcs"><br>
+            <b >laboratory capacity:</b><br>
+            <input type="number" id="lab_cap" name="NewLabCap"><br>
+            <b  >number of chairs in laboratory:</b><br>
+            <input type="number" id="chair_num" name="NewLabChairNum"><br>
+            <b>status of laboratory:</b><br>
+            <input type="radio" id="stat_1" name="raf" value="Active">active<br>
+            <input type="radio" id="stat_2" name="raf" value="Under Maintenance">under maintenance<br>
+            <br><input type="submit">
+        </form>
+        <script src="{%static 'js/new.js'%}"></script>
+
+    </body>
+</html>
+{%endblock content%}

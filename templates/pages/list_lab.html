@@ -1,0 +1,115 @@
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>List Labs</title>
+        <link rel="stylesheet" href="{%static 'css/list_lab.css'%}">
+        <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+        <div class="home">
+            <div class="navbar">
+                <ul class="nav_links">
+                    <li><a href="{%url 'LabH'%}"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a href="{%url 'EditLabs'%}"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
+                    <li><a href="{%url 'Report'%}"><i class="fa-solid fa-screwdriver-wrench"></i>Report a problem</a></li>
+                    <li><a href="{%url 'AddLab'%}"><i class="fa-solid fa-circle-plus"></i>Add Lab</a></li>
+                    <li><a href="{%url 'ListLab'%}"><i class="fa-solid fa-laptop"></i>Show Lab</a></li>
+                        <li><a href="{%url 'AddPC'%}"><i class="fa-solid fa-circle-plus"></i>Add PC</a></li>
+                        <li><a href="{%url 'PcsList'%}"><i class="fa-solid fa-list"></i>Show PC</a></li>
+                </ul>
+                </div>
+        </div>
+
+
+        <div style="margin-top: 20px;" class="container">
+
+            <input id="namanyay-search-box" name="q" size="40" type="text" placeholder="  Search "/>
+            <input id="namanyay-search-btn" value="Search" type="submit"/>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Building Number</th>
+                        <th>Floor Number</th>
+                        <th>Number of PCs</th>
+                        <th>Capacity</th>
+                        <th>Number of chairs</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="labs-table">
+                    {% for x in LabI%}
+                    <tr>
+                        <td>{{x.Laboratory_ID}}</td>
+                        <td>{{x.Laboratory_Name}}</td>
+                        <td>{{x.Laboratory_Number}}</td>
+                        <td>{{x.Floor_Number}}</td>
+                        <td>{{x.NumOfPcs}}</td>
+                        <td>{{x.LabCapacity}}</td>
+                        <td>{{x.NumOfChairs}}</td>
+                        <td>{{x.LabStatus}}</td>
+                        <td >
+                            <div style="width:280px"><a href="Report/{{x.Laboratory_ID}}"><button > Report
+                            </button></a><a href="DeleteLab/{{x.Laboratory_ID}}"><button onclick="confirm('Are you sure?');"> Delete
+                                </button><a href="EditLabs/{{x.Laboratory_ID}}"><button > Edit
+                                </button></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+<script>
+    const searchField = document.querySelector("#namanyay-search-box");
+    const searchButton = document.querySelector("#namanyay-search-btn");
+    const table = document.querySelector("#labs-table");
+
+    searchButton.addEventListener('click',()=>{
+        const searchValue = searchField.value;
+
+        fetch('labs/search',{
+            body : JSON.stringify({searchText: searchValue}),
+            method: "POST",
+        })
+            .then((res)=>res.json())
+            .then((data)=>{
+                table.innerHTML ='';
+                for (let i = 0; i < data.length; i++) {
+                                    table.innerHTML +=
+                    `<tr>
+                    <td>${data[i]["Laboratory_ID"]||""}</td>
+                    <td>${data[i]["Laboratory_Name"]||""}</td>
+                    <td>${data[i]["Laboratory_Number"]||""}</td>
+                    <td>${data[i]["Floor_Number"]||""}</td>
+                    <td>${data[i]["NumOfPcs"]||""}</td>
+                    <td>${data[i]["LabCapacity"]||""}</td>
+                    <td>${data[i]["NumOfChairs"]||""}</td>
+<td>${data[i]["LabStatus"]||""}</td>
+                        <td >
+                            <div style="width:280px"><a href="Report/${data[i]["id"]||""}"><button > Report
+                            </button></a><a href="DeleteLab/${data[i]["id"]||""}"><button onclick="confirm('Are you sure?');"> Delete
+                                </button><a href="EditLabs/${data[i]["id"]||""}"><button > Edit
+                                </button></a>
+                            </div>
+                        </td>
+                    </tr>`
+                ;
+                }
+
+            })
+    })
+</script>
+</html>
+{%endblock content%}

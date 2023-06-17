@@ -1,0 +1,58 @@
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update PCs</title>
+    <link rel="stylesheet" href="{%static 'css/edit_PCs.css'%}">
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="home">
+        <div class="navbar">
+            <ul class="nav_links">
+                <li><a href="{%url 'LabH'%}"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{%url 'EditLabs'%}"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
+                <li><a href="{%url 'Report'%}"><i class="fa-solid fa-screwdriver-wrench"></i>Report a problem</a></li>
+                <li><a href="{%url 'AddLab'%}"><i class="fa-solid fa-circle-plus"></i>Add Lab</a></li>
+                <li><a href="{%url 'ListLab'%}"><i class="fa-solid fa-laptop"></i>Show Lab</a></li>
+                    <li><a href="{%url 'AddPC'%}"><i class="fa-solid fa-circle-plus"></i>Add PC</a></li>
+                    <li><a href="{%url 'PcsList'%}"><i class="fa-solid fa-list"></i>Show PC</a></li>
+            </ul>
+            </div>
+    </div>
+    <div class="wrapper">
+    <h1>Adding the new information which you want to change</h1>
+    
+    <form action="EPs/{{EditPCObj.Lab_ID}}" method="post">
+        {% csrf_token %}
+        <b >PC ID:</b><br>
+        <input type="text" name="Eid" value={{EditPCObj.PC_ID}}>
+        <br><br>
+        <b >Laboratory ID:</b><br>
+        <input type="text" name="Elab_id" value={{EditPCObj.Lab_ID}}>
+        <br><br>
+        <b>Status of PC:
+        </b><br>
+        <input type="radio" name="Estatus" value="Active">active<br>
+        <input type="radio" name="Estatus" value="Under Maintenance">under maintenance<br>
+        <br>
+        <button onclick="confirm('Are you sure ?');"style="font-size: 12px;">Complete</button>
+        {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    </form>
+</div>
+</body>
+</html>
+{%endblock content%}

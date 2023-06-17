@@ -1,0 +1,66 @@
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Report Page</title>
+    <link rel="stylesheet" href="{%static 'css/report.css'%}">
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <div class="home">
+      <div class="navbar">
+          <ul class="nav_links">
+              <li><a href="{%url 'LabH'%}"><i class="fa fa-home"></i>Home</a></li>
+              <li><a href="{%url 'EditLabs'%}"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
+              <li><a href="{%url 'Report'%}"><i class="fa-solid fa-screwdriver-wrench"></i>Report a problem</a></li>
+              <li><a href="{%url 'AddLab'%}"><i class="fa-solid fa-circle-plus"></i>Add Lab</a></li>
+              <li><a href="{%url 'ListLab'%}"><i class="fa-solid fa-laptop"></i>Show Lab</a></li>
+                  <li><a href="{%url 'AddPC'%}"><i class="fa-solid fa-circle-plus"></i>Add PC</a></li>
+                  <li><a href="{%url 'PcsList'%}"><i class="fa-solid fa-list"></i>Show PC</a></li>
+          </ul>
+          </div>
+  </div>
+    <h1 style="text-align:center;color: crimson;">Report a problem</h1>
+    <form id="form"  method="post">
+      {% csrf_token %}
+      <div class="input-group">
+        <label for="labID">laboratory id:</label>
+        <input type="text"  id="labID" name="RepLabID" value={{ReportObj.Laboratory_ID}}>
+        <div class="error"></div><br>
+      </div>
+
+      <div class="input-group">
+        <label for="NumPc">Number of PC:</label>
+        <input type="form"  id="NumPc" name="RepPcNum">
+        <div class="error"></div><br>
+      </div>
+
+      <div class="input-group">
+        <label for="problemtype">Choose a type of problem:</label>
+        <select id="problemtype" name="Repoption">
+            <option value = "-1" selected>[choose type of problem]</option>
+            <option value = "Software" >Software</option>
+            <option value = "Hardware" >Hardware</option>
+        </select>
+        <div class="error"></div><br>
+      </div>
+
+      <div class="input-group">
+        <label for="mydate">Select Date:</label>
+        <input type="date"  id="mydate" name="RepProblemDate"><br>
+      </div>
+
+      <div class="input-group">
+        <label for="description">Description of problem:</label><br>
+        <textarea id="description" placeholder="description..." name="RepDescription"></textarea>
+      </div>
+      <input type="submit" id="submit">
+    </form>
+    <script type="text/javascript" src="{%static 'js/report.js'%}"></script>
+  </body>
+</html>
+{%endblock content%}
