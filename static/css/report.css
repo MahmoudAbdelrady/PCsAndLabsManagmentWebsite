@@ -1,0 +1,82 @@
+#description
+{
+    width:90%;
+    height: 150px;
+    padding: 12px 20px;
+    resize: none;
+}
+body
+{
+    font-family: 'Trebuchet MS';
+    background-color: #282931;
+    color:#fffff8;
+}
+#form
+{
+    width: 30%;
+    margin: 2vh auto 0 auto;
+    padding: 20px;
+    background-color: whitesmoke;
+    color:black;
+    border-radius: 4px;
+    font-size: 12px;
+}
+#submit 
+{
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: crimson;
+    border: none;
+    border-radius: 4px;
+}
+#form select 
+{
+   width: 70%;
+}
+.input-group
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group input
+{
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-size: 12px;
+	padding: 10px;
+	width: 90%;
+}
+
+.input-group input:focus {
+    outline: 0;
+}
+
+.input-group.success input {
+    border-color: #09c372;
+}
+
+.input-group.error input {
+    border-color: #ff3860;
+}
+
+.input-group .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+
+.input-group select:focus {
+    outline: 0;
+}
+
+.input-group.success select {
+    border-color: #09c372;
+}
+
+.input-group.error select {
+    border-color: #ff3860;
+}

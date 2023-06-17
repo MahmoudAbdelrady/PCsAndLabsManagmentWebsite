@@ -1,0 +1,41 @@
+body
+{
+    font-family: 'Trebuchet MS';
+    background-color: #282931;
+    color: #fffff8;
+}
+.wrapper{
+    text-align: center;
+}
+.wrapper h1
+{
+    font-family: 'Trebuchet MS';
+    text-align: center;
+    font-style: normal;
+    font-size: 20px;
+    color: white;
+}
+.wrapper p
+{
+    font-family: 'Trebuchet MS';
+    font-size: 15px;
+    color: white;
+
+}
+.wrapper p b
+{
+    font-size: 15px;
+}
+.wrapper input
+{
+    border-radius: 10px;
+    font-size: 15px;
+    color: black;
+    border-color: red;
+}
+.wrapper button
+{
+    border-color: red;
+    border-radius: 10px;
+}
+
